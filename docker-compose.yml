@@ -40,14 +40,6 @@ services:
     depends_on:
       - node
 
-# Aplicació per accedir via web a la nostra base de dades, al port 9090
-  adminer:
-    image: adminer:4.7.7
-    restart: always
-    ports:
-      - 9090:8080
-    depends_on:
-      - db
 
 # Base de dades MySQL (db)
 # anomeneu-la com vulgueu, però recordeu que ha de coincidir amb el nom
@@ -89,6 +81,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./www:/var/www/html
+      - ./front:/var/www/html
     links:
       - db
+    depends_on:
+      - node
