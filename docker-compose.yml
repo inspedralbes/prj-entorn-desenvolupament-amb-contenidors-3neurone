@@ -68,6 +68,27 @@ services:
       - 3306:3306
     volumes:
       # Per guardar les dades de forma persistent
-      - ./mysql_data:/var/lib/mysql
+      - ./mysql/mysql_data:/var/lib/mysql
       # Per crear algunes taules al primer inici
       - ./mysql/dades.sql:/docker-entrypoint-initdb.d/dades.sql
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+    depends_on:
+      - db
+    restart: always
+
+
+  web:
+    image: php:7.2-apache
+    container_name: docker-php
+    ports:
+      - "80:80"
+    volumes:
+      - ./www:/var/www/html
+    links:
+      - db
