@@ -36,7 +36,7 @@ services:
     volumes:
       - ./front:/usr/share/nginx/html
     ports:
-      - 80:80
+      - 81:80
     depends_on:
       - node
 
@@ -67,7 +67,7 @@ services:
   phpmyadmin:
     image: phpmyadmin
     ports:
-      - 8080:80
+      - 8081:80
     environment:
       - PMA_HOST=mysql
     depends_on:
@@ -79,7 +79,7 @@ services:
     image: php:7.2-apache
     container_name: docker-php
     ports:
-      - "80:80"
+      - "82:80"
     volumes:
       - ./front:/var/www/html
     links:
