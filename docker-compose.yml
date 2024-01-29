@@ -24,7 +24,7 @@ services:
     volumes:
       - ./node:/home/node/app
     working_dir: /home/node/app
-    command: "npm start"
+    command: bash -c  "npm install && npm start" 
     ports:
       - 8080:8080
 
