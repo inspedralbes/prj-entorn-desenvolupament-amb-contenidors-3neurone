@@ -31,12 +31,14 @@ services:
 
 # Servidor web NGINX per servir els fitxers estàtics pel port 80
 # Serveix els fitxers de la carpeta "front" 
-  nginx:
-    image: nginx:1.25.3-alpine
+  front:
+    image: node:19-buster-slim
     volumes:
-      - ./front:/usr/share/nginx/html
+      - ./front:/home/node/app
+    working_dir: /home/node/app
     ports:
-      - 81:80
+      - 80:4321
+    command: bash -c  "npm install && npm run"
     depends_on:
       - node
 
