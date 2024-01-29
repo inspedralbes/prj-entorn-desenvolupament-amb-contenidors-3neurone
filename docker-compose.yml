@@ -32,16 +32,15 @@ services:
 # Servidor web NGINX per servir els fitxers estàtics pel port 80
 # Serveix els fitxers de la carpeta "front" 
   front:
-    image: node:19-buster-slim
+    build: ./front
     volumes:
       - ./front:/home/node/app
     working_dir: /home/node/app
     ports:
-      - 80:4321
-    command: bash -c  "npm install && npm run"
+      - 4321:4321
+    command: bash -c  "npm install && npm run dev"
     depends_on:
       - node
-
 
 # Base de dades MySQL (db)
 # anomeneu-la com vulgueu, però recordeu que ha de coincidir amb el nom
