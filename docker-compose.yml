@@ -50,6 +50,7 @@ services:
 # que hi hagi a la carpeta "docker-entrypoint-initdb.d" al primer inici
   db:
     image: mysql:8.2.0
+    container_name: db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -66,13 +67,18 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
     ports:
       - 8081:80
-    environment:
-      - PMA_HOST=mysql
-    depends_on:
+    depends_on: 
       - db
-    restart: always
 
 
   web:
