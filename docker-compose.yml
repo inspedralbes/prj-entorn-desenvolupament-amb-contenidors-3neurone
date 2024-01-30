@@ -80,6 +80,15 @@ services:
     depends_on: 
       - db
 
+  composer.test:
+    image: composer/composer
+    ports:
+      - "9001:9000"
+    volumes:
+      - "./laravel:/composer"
+    container_name: composer.test
+    working_dir: /composer
+    command: install
 
   web:
     image: php:7.2-apache
@@ -88,6 +97,7 @@ services:
       - "82:80"
     volumes:
       - ./front:/var/www/html
+      - ./laravel:/var/www/html/laravel
     links:
       - db
     depends_on:
