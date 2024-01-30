@@ -80,18 +80,10 @@ services:
     depends_on: 
       - db
 
-  composer.test:
-    image: composer/composer
-    ports:
-      - "9001:9000"
-    volumes:
-      - "./laravel:/composer"
-    container_name: composer.test
-    working_dir: /composer
-    command: install
-
   web:
-    image: php:7.2-apache
+    build: 
+      dockerfile: ./apache.DockerFile
+      context: ./sites-available
     container_name: docker-php
     ports:
       - "82:80"
@@ -102,3 +94,16 @@ services:
       - db
     depends_on:
       - node
+    working_dir: /var/www/html/
+
+  composer.test:
+    image: composer/composer
+    links:
+      - db
+    ports:
+      - "9001:9000"
+    volumes:
+      - "./laravel:/composer"
+    container_name: composer.test
+    working_dir: /composer
+    command: bash -c "composer install && php artisan migrate && php artisan key:generate"
