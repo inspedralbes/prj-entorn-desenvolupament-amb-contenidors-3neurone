@@ -94,8 +94,8 @@ services:
       - db
     depends_on:
       - node
-    working_dir: /var/www/html/
-
+    working_dir: /var/www/html/laravel
+    command: bash -c "php artisan migrate && php artisan generate:key"
   composer.test:
     image: composer/composer
     links:
@@ -106,4 +106,4 @@ services:
       - "./laravel:/composer"
     container_name: composer.test
     working_dir: /composer
-    command: bash -c "composer install && php artisan migrate && php artisan key:generate"
+    command: bash -c "composer install"
