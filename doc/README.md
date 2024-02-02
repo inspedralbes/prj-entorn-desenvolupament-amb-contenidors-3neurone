@@ -13,3 +13,7 @@ eines necessaries i com es crea l'entorn per que algú us ajudi en el vostre pro
 
 ## API / Endpoints / punts de comunicació
 Heu d'indicar quins són els punts d'entrada de la API i quins són els JSON que s'envien i es reben a cada endpoint
+
+
+## Laravel
+Per acabar de que funcioni el docker has de anar a docker desktop, al contenidor de php i executar php artisan key:generate i php artisan migrate:fresh --seed el primer cop que s'encen

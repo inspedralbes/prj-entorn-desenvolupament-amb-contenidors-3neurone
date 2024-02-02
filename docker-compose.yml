@@ -95,7 +95,7 @@ services:
     depends_on:
       - node
     working_dir: /var/www/html/laravel
-    command: bash -c "php artisan migrate && php artisan generate:key"
+
   composer.test:
     image: composer/composer
     links:

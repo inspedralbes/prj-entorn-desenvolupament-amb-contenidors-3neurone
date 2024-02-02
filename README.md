@@ -38,3 +38,4 @@ Aquestes imatges es poden publicar en repositoris d'imatges (públics o privats)
 
 ## Hibrid
 Sovint, a producció, es fa un emfocament hybrid, es creen les imatges específiques per a cadascun dels nostres serveis amb els seus fitxers, s'aixequen de forma conjunta amb compose i les bases de dades tenen un volum extern montat per fer la informació persistent.
+
